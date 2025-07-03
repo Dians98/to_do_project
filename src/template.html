@@ -4,20 +4,36 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
-    <h1>TEST BRANCHE</h1>
-  </body>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="col-md-2 sidebar">
+                <div class="task_category active"><i class="fa-solid fa-calendar-days"></i> All</div>
+                <div class="task_category "><i class="fa-solid fa-calendar-xmark"></i> Today</div>
+                <div class="task_category "><i class="fa-solid fa-calendar-week"></i> Week</div>
+                <div class="task_category "><i class="fa-solid fa-triangle-exclamation"></i> Important</div>
+                <div class="task_category "><i class="fa-solid fa-check-to-slot"></i> Completed</div>
+            </div>
+
+            <!-- CONTENU -->
+            <main class="col-md-10 main_content">
+                <nav class="navbar d-flex justify-content-end align-items-center p-3 border-bottom">
+                    <button class="btn btn-primary">Ajouter une tache</button>
+                </nav>
+            </main>
+        </div>
+        
+    </div>
+</body>
+
 </html>

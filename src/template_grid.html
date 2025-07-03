@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landing Page Grid + Scroll</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    /* Layout global en Grid */
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header"
+        "main"
+        "footer";
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      grid-area: header;
+      background-color: #007bff;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.2rem;
+      font-weight: 600;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      grid-area: main;
+      overflow-y: auto;
+      padding: 2rem 1rem;
+      background: #f9f9f9;
+    }
+
+    footer {
+      grid-area: footer;
+      background-color: #222;
+      color: #eee;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* Section Hero - grid 2 colonnes */
+    #hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1140px;
+      margin: auto;
+    }
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    #hero p {
+      font-size: 1.2rem;
+      color: #444;
+    }
+    #hero .btn-primary {
+      margin-top: 1rem;
+    }
+    /* Responsive hero */
+    @media (max-width: 768px) {
+      #hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    /* Section Services - flexbox */
+    #services .container {
+      max-width: 1140px;
+      margin: auto;
+    }
+    .services-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+    .service-card {
+      flex: 1 1 30%;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .service-card h4 {
+      color: #007bff;
+      margin-bottom: 0.8rem;
+    }
+    .service-card p {
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      .service-card {
+        flex: 1 1 80%;
+      }
+    }
+
+    /* Section Contact */
+    #contact .container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #contact h2 {
+      margin-bottom: 1.5rem;
+      color: #007bff;
+    }
+    #contact form input,
+    #contact form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    #contact form button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #contact form button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MonSite</h1>
+  <nav>
+    <a href="#hero">Accueil</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="hero" class="my-5">
+    <div class="container">
+      <div>
+        <h1>Créez un site moderne</h1>
+        <p>Combinez Bootstrap, Grid et Flexbox pour un site responsive, élégant et performant.</p>
+        <a href="#services" class="btn btn-primary btn-lg">Découvrir</a>
+      </div>
+      <div>
+        <!-- Image à importer via Webpack en JS -->
+        <img alt="Illustration" class="img-fluid" />
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="my-5">
+    <div class="container">
+      <h2 class="mb-4">Nos Services</h2>
+      <div class="services-flex">
+        <div class="service-card">
+          <h4>Design Responsive</h4>
+          <p>Des interfaces adaptées à tous les écrans avec Flexbox & Grid.</p>
+        </div>
+        <div class="service-card">
+          <h4>Développement Moderne</h4>
+          <p>HTML5, CSS3, JavaScript ES6+, tout est là pour des sites performants.</p>
+        </div>
+        <div class="service-card">
+          <h4>Optimisation</h4>
+          <p>Des temps de chargement rapides et un code propre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="my-5">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <form>
+        <input type="text" placeholder="Votre nom" required />
+        <input type="email" placeholder="Votre email" required />
+        <textarea rows="4" placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 MonSite. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
