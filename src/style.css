@@ -105,3 +105,15 @@ h6 {
   background-color: #fff9db; /* un jaune très pâle, doux */
   color: #5a4d00; /* texte marron foncé, lisible */
 }
+
+.btn-add-task {
+  background-color: #fda085!important;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn-add-task:hover {
+  cursor: pointer;
+}
