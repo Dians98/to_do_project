@@ -18,21 +18,58 @@
         <div class="row">
             <!-- SIDEBAR -->
             <div class="col-md-2 sidebar">
-                <div class="task_category active"><i class="fa-solid fa-calendar-days"></i> All</div>
-                <div class="task_category "><i class="fa-solid fa-calendar-xmark"></i> Today</div>
-                <div class="task_category "><i class="fa-solid fa-calendar-week"></i> Week</div>
-                <div class="task_category "><i class="fa-solid fa-triangle-exclamation"></i> Important</div>
-                <div class="task_category "><i class="fa-solid fa-check-to-slot"></i> Completed</div>
+                <div class="sidebar_header">
+                    <i class="fas fa-tasks"></i>
+                    <p>ToDo</p>
+                </div>
+                <div class="sidebar_menus">
+                    <div class="to_do_categories">
+                        <div class="task_category active"><i class="fa-solid fa-calendar-days"></i> All</div>
+                        <div class="task_category "><i class="fa-solid fa-calendar-xmark"></i> Today</div>
+                        <div class="task_category "><i class="fa-solid fa-calendar-week"></i> Week</div>
+                        <div class="task_category "><i class="fa-solid fa-triangle-exclamation"></i> Important</div>
+                        <div class="task_category "><i class="fa-solid fa-check-to-slot"></i> Completed</div>
+                    </div>
+
+                    <div class="to_do_projects">
+                        <div class="to_do_projects_title">
+                            Projects (1)
+                        </div>
+
+                        <div class="to_do_projects_list_container">
+                            <div class="to_do_projects_list">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>Default</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
-            <!-- CONTENU -->
+            <!-- NAVBAR -->
             <main class="col-md-10 main_content">
                 <nav class="navbar d-flex justify-content-end align-items-center p-3 border-bottom">
                     <button class="btn btn-add-task"><i class="fa-solid fa-plus"></i> Ajouter une tache</button>
                 </nav>
+
+                <div class="to_do_container">
+                    <div class="to_do_title">
+                        <i class="fa-solid fa-calendar-days"></i><span>All</span>
+                    </div>
+                    <div class="to_do_separator">
+                        Tasks (2)
+                    </div>
+                    <div class="tasks_list">
+
+                    </div>
+                </div>
             </main>
+
+
         </div>
-        
+
     </div>
 </body>
 
