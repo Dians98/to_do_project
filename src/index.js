@@ -1,4 +1,6 @@
-import "./style.css";
+import "./assets/js/others.js"
+import "./assets/css/style.css";
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // src/index.js
