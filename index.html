@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .sidebar {
+        background-color: #343a40;
+        color: white;
+        height: 100vh;
+        padding: 1rem;
+      }
+
+      .todo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+
+      .todo-card {
+        background-color: white;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      }
+
+      .todo-actions button {
+        margin-left: 0.5rem;
+      }
+    </style>
+  <script defer src="main.js"></script></head>
+  <body>
+
+    <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-3 sidebar">
+        <h4>Admin Panel</h4>
+        <ul class="nav flex-column mt-4">
+          <li class="nav-item"><a class="nav-link text-white" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">To-Do</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Utilisateurs</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <main class="col-md-9 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Liste des tâches</h2>
+          <button class="btn btn-primary">Ajouter une tâche</button>
+        </div>
+
+        <!-- Grid de tâches -->
+        <div class="todo-grid">
+          <div class="todo-card d-flex justify-content-between align-items-start flex-column">
+            <div>
+              <h5>Tâche 1</h5>
+              <p>Préparer le rapport financier.</p>
+            </div>
+            <div class="todo-actions d-flex justify-content-end w-100">
+              <button class="btn btn-sm btn-outline-success">✔ Terminer</button>
+              <button class="btn btn-sm btn-outline-danger">✖ Supprimer</button>
+            </div>
+          </div>
+
+          <div class="todo-card d-flex justify-content-between align-items-start flex-column">
+            <div>
+              <h5>Tâche 2</h5>
+              <p>Envoyer les emails clients.</p>
+            </div>
+            <div class="todo-actions d-flex justify-content-end w-100">
+              <button class="btn btn-sm btn-outline-success">✔ Terminer</button>
+              <button class="btn btn-sm btn-outline-danger">✖ Supprimer</button>
+            </div>
+          </div>
+
+          <div class="todo-card d-flex justify-content-between align-items-start flex-column">
+            <div>
+              <h5>Tâche 3</h5>
+              <p>Mettre à jour le site vitrine.</p>
+            </div>
+            <div class="todo-actions d-flex justify-content-end w-100">
+              <button class="btn btn-sm btn-outline-success">✔ Terminer</button>
+              <button class="btn btn-sm btn-outline-danger">✖ Supprimer</button>
+            </div>
+          </div>
+
+          <!-- Tu peux dupliquer autant de cartes que nécessaire -->
+        </div>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>
