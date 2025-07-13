@@ -49,12 +49,13 @@ function renderAllTasks(projects) {
 
     tasks_list_container.innerHTML = '';
 
-
+    let taskNumber = 0;
 
     projects.forEach(project => {
         const tasks = project.getAllTasks()
 
-        tasks.forEach(task => {
+        
+        tasks.forEach((task, index) => {
 
             const taskItem = document.createElement("div")
             taskItem.className = "task_item";
@@ -113,10 +114,14 @@ function renderAllTasks(projects) {
 
             tasks_list_container.appendChild(taskItem)
 
+            taskNumber ++
 
 
         })
     })
+
+    const taskNumberElement = document.querySelector("#task_number")
+    taskNumberElement.textContent = taskNumber
 }
 
 
