@@ -50,13 +50,20 @@ function renderAllTasks(projects) {
     tasks_list_container.innerHTML = '';
 
 
+
     projects.forEach(project => {
         const tasks = project.getAllTasks()
 
         tasks.forEach(task => {
 
-            const taskDiv = document.createElement("div")
-            taskDiv.className = "task_item";
+            const taskItem = document.createElement("div")
+            taskItem.className = "task_item";
+
+            if (task.done) {
+                taskItem.classList.add("done");
+            } else {
+                taskItem.classList.remove("done");
+            }
 
             const taskInfo = document.createElement("div")
             taskInfo.className = "task_info";
@@ -69,16 +76,17 @@ function renderAllTasks(projects) {
             doneBtn.dataset.taskId = task.id;
 
 
+
             // fonction pour mettre à jour l'icône selon l'état done
             function updateIcon() {
                 doneBtn.innerHTML = task.done
-                    ? `<i class="fas fa-check-circle" style="color:green;"></i>`
-                    : `<i class="far fa-circle" style="color:gray;"></i>`;
+                    ? `<i class="fas fa-check-circle" style="color:#f6d365;"></i>`
+                    : `<i class="far fa-circle" style="color:#fda085;"></i>`;
             }
 
             updateIcon()
 
-            addEventListenerOnDoneBtn(doneBtn, task)
+            addEventListenerOnDoneBtn(doneBtn, task, taskItem)
 
 
             const taskTitle = document.createElement("div")
@@ -100,10 +108,12 @@ function renderAllTasks(projects) {
             taskInfo.appendChild(doneBtn)
             taskInfo.appendChild(taskTitle)
 
-            taskDiv.appendChild(taskInfo)
-            taskDiv.appendChild(task_actions)
+            taskItem.appendChild(taskInfo)
+            taskItem.appendChild(task_actions)
 
-            tasks_list_container.appendChild(taskDiv)
+            tasks_list_container.appendChild(taskItem)
+
+
 
         })
     })
@@ -124,9 +134,10 @@ function formatDate(date) {
 }
 
 
-function addEventListenerOnDoneBtn(doneBtn, task) {
+function addEventListenerOnDoneBtn(doneBtn, task, taskItem) {
     doneBtn.addEventListener("click", function () {
         task.toggleDone()
+
         refreshDom(projects)
 
     })

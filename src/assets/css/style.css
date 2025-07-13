@@ -225,3 +225,7 @@ h6 {
   display: flex;
   justify-content: space-between;
 }
+
+.task_item.done {
+  text-decoration: line-through;
+}
