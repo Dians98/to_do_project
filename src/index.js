@@ -35,9 +35,18 @@ projects.push(defaultProject)
 
 
 const tasks = [
-    new Task(1, 'Acheter du lait', 'LOREM IPSUM DOLOR', today),
-    new Task(2, 'Répondre aux emails', 'LSIT AMET', today)
+    new Task(1, 'Créer le composant Task', 'Développer l’affichage d’une tâche', today),
+    new Task(2, 'Implémenter la gestion des projets', 'Associer les tâches aux projets', today),
+    new Task(3, 'Ajouter la fonctionnalité "marquer comme fait"', 'Toggle état done', today),
+    new Task(4, 'Construire la sidebar', 'Menu catégories et projets', today),
+    new Task(5, 'Intégrer le style CSS', 'Responsive design et thèmes', today),
+    new Task(6, 'Gérer le stockage local', 'Sauvegarder les tâches en localStorage', today),
+    new Task(7, 'Ajouter les filtres Today / Week / Important', 'Filtrage dynamique', today),
+    new Task(8, 'Développer les boutons CRUD', 'Créer, éditer, supprimer tâches', today),
+    new Task(9, 'Tester le rendu dynamique des tâches', 'Vérifier la mise à jour du DOM', today),
+    new Task(10, 'Préparer le déploiement GitHub Pages', 'Serveur statique avec Webpack', today)
 ];
+
 
 tasks.forEach(task => defaultProject.addTask(task))
 
@@ -54,7 +63,7 @@ function renderAllTasks(projects) {
     projects.forEach(project => {
         const tasks = project.getAllTasks()
 
-        
+
         tasks.forEach((task, index) => {
 
             const taskItem = document.createElement("div")
@@ -114,7 +123,7 @@ function renderAllTasks(projects) {
 
             tasks_list_container.appendChild(taskItem)
 
-            taskNumber ++
+            taskNumber++
 
 
         })
