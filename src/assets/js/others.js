@@ -16,6 +16,9 @@ to_do_projects_lists.forEach(to_do_projects_list => {
     })
 });
 
+/**
+ * CETTE FONCTION ENLEVE TOUS LES ACTIVE DES MENUS 
+ */
 function remove_all_active_menu() {
     task_categories.forEach(tc => tc.classList.remove("active"));
     to_do_projects_lists.forEach(tdpl => tdpl.classList.remove("active"));

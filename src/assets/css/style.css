@@ -155,18 +155,18 @@ h6 {
   gap: 2rem;
 }
 
-.to_do_title{
+.to_do_title {
   display: flex;
   gap: 0.5rem;
   font-size: 2rem;
   align-items: center;
 }
 
-.to_do_separator{
-      width: 50%;
-    border-bottom: 1px solid;
-    padding: 0rem 1rem;
-    font-size: 1.5rem;
+.to_do_separator {
+  width: 50%;
+  border-bottom: 1px solid;
+  padding: 0rem 1rem;
+  font-size: 1.5rem;
 }
 
 .to_do_categories {
@@ -186,17 +186,17 @@ h6 {
   border-bottom: 1px solid black;
 }
 
-.to_do_projects_list_container{
+.to_do_projects_list_container {
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.to_do_projects_list{
-    background-color: #f6d365;
-    padding: 1rem;
-    cursor: pointer;
+.to_do_projects_list {
+  background-color: #f6d365;
+  padding: 1rem;
+  cursor: pointer;
 
 }
 
@@ -205,4 +205,23 @@ h6 {
   /* un jaune très pâle, doux */
   color: #5a4d00;
   /* texte marron foncé, lisible */
+}
+
+.tasks_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  padding: 0rem 1rem;
+  font-size: 1.5rem;
+}
+
+.task_info {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task_item {
+  display: flex;
+  justify-content: space-between;
 }
