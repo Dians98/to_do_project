@@ -238,7 +238,12 @@ h6 {
 
 .task_actions .view_task,
 .task_actions .edit_task,
-.task_actions .delete_task
-{
+.task_actions .delete_task {
   cursor: pointer;
+}
+
+.task_actions .view_task:hover,
+.task_actions .edit_task:hover,
+.task_actions .delete_task:hover {
+  transform: scale(1.3);
 }

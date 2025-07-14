@@ -61,6 +61,13 @@ export function renderAllTasks(projects) {
             viewTask.dataset.taskId = task.id
             viewTask.innerHTML = `<i class="fas fa-info-circle" style="color : lightblue;"></i>`
 
+            viewTask.addEventListener("click", function() {
+                const taskId = this.dataset.taskId
+                const taskModal = new bootstrap.Modal(document.getElementById('viewTaskModal'));
+                taskModal.show();
+            });
+
+
             const editTask = document.createElement("div")
             editTask.className = "edit_task"
             editTask.dataset.taskId = task.id
