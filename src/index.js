@@ -28,7 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitBtn.addEventListener("click", function () {
         const taskId = this.dataset.taskId
+        const task = findTaskById(projects, taskId)
 
+        task.title = taskModalElement.querySelector("#task_title").value
+        task.description = taskModalElement.querySelector("#task_description").value
+        task.isImportant = taskModalElement.querySelector("#task_importance").checked ? true : false
+        task.dueDate = taskModalElement.querySelector("#task_due_date").value
+        
+        
         taskModal.hide()
         refreshDom(projects)
     });
@@ -75,6 +82,17 @@ function formatDate(date) {
     const m = (date.getMonth() + 1).toString().padStart(2, '0')
     const day = date.getDate().toString().padStart(2, '0')
     return `${y}-${m}-${day}`;
+}
+
+function findTaskById(projects, taskId) {
+    /**
+     * PERMETS DE SORITR DE LA BOUCLE UNE FOIS LA TACHE TROUVEE
+     */
+    for (const project of projects) {
+        const task = project.getTaskById(taskId);
+        if (task) return task;
+    }
+    return null;
 }
 
 

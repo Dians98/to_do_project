@@ -12,7 +12,9 @@ export default class Project {
         this._tasks.push(task);
     }
 
-    
+    getTaskById (id){
+        return this._tasks.find(task => task.id == id);
+    }
 }
 
 
