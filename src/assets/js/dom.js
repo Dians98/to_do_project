@@ -150,13 +150,13 @@ function viewTaskAddEventListener(viewTask, task) {
         taskModalElement.querySelector('#task_due_date').value = task.dueDate
 
 
-
+        taskModalElement.querySelector("#submitBtn").hidden = true;
         taskModal.show();
     });
 }
 
 
-function editTaskAddEventListener(editTask, task,  datePicker) {
+function editTaskAddEventListener(editTask, task, datePicker) {
     editTask.addEventListener("click", function () {
         const taskId = this.dataset.taskId
         const taskModalElement = document.querySelector("#taskModal")
@@ -181,6 +181,12 @@ function editTaskAddEventListener(editTask, task,  datePicker) {
         datePicker.setDate(new Date(task.dueDate), true);
         taskModalElement.querySelector('#task_due_date').disabled = false
 
+        const submitBtn = taskModalElement.querySelector("#submitBtn")
+        submitBtn.hidden = false
+
+        submitBtn.addEventListener("click", function(){
+            task.title = taskModalElement.querySelector('#task_title').value 
+        })
 
         taskModal.show();
     });
