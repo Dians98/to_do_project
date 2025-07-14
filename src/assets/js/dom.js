@@ -41,7 +41,7 @@ export function renderAllTasks(projects) {
 
             updateIcon()
 
-            addEventListenerOnDoneBtn(doneBtn, task, taskItem)
+            addEventListenerOnDoneBtn(doneBtn, task, projects)
 
 
             const taskTitle = document.createElement("div")
@@ -88,7 +88,7 @@ export function renderAllTasks(projects) {
     taskNumberElement.textContent = taskNumber
 }
 
-function addEventListenerOnDoneBtn(doneBtn, task, taskItem) {
+function addEventListenerOnDoneBtn(doneBtn, task, projects) {
     doneBtn.addEventListener("click", function () {
         task.toggleDone()
         refreshDom(projects)
