@@ -16,14 +16,22 @@ import * as bootstrap from 'bootstrap';
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
 import { renderAllTasks } from "./assets/js/dom.js"
-
+import { refreshDom } from "./assets/js/dom.js"
+import { taskModal, taskModalElement } from './assets/js/dom.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const projects = initializeDefaultProject();
     renderAllTasks(projects)
 
-    
+    const submitBtn = taskModalElement.querySelector("#submitBtn");
+
+    submitBtn.addEventListener("click", function () {
+        const taskId = this.dataset.taskId
+
+        taskModal.hide()
+        refreshDom(projects)
+    });
 })
 
 

@@ -2,6 +2,18 @@ import * as bootstrap from 'bootstrap';
 import Pikaday from 'pikaday';
 import 'pikaday/css/pikaday.css';
 
+const taskDueDate = document.querySelector("#task_due_date");
+
+let datePicker;
+datePicker = new Pikaday({
+    field: taskDueDate,
+    format: "YYYY-MM-DD",
+    setDefaultDate: false,
+});
+
+export const taskModalElement = document.querySelector("#taskModal")
+export const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'));
+
 export function renderAllTasks(projects) {
     const tasks_list_container = document.querySelector(".tasks_list")
 
@@ -9,17 +21,9 @@ export function renderAllTasks(projects) {
 
     let taskNumber = 0
 
-    const taskDueDate = document.querySelector("#task_due_date");
-    let datePicker;
-    datePicker = new Pikaday({
-        field: taskDueDate,
-        format: "YYYY-MM-DD",
-        setDefaultDate: false,
-    });
 
     projects.forEach(project => {
         const tasks = project.getAllTasks()
-
 
         tasks.forEach((task, index) => {
 
@@ -43,7 +47,6 @@ export function renderAllTasks(projects) {
             doneBtn.dataset.taskId = task.id
 
 
-
             // fonction pour mettre à jour l'icône selon l'état done
             function updateIcon() {
                 doneBtn.innerHTML = task.done
@@ -54,7 +57,6 @@ export function renderAllTasks(projects) {
             updateIcon()
 
             addEventListenerOnDoneBtn(doneBtn, task, projects)
-
 
             const taskTitle = document.createElement("div")
             taskTitle.className = "task_title"
@@ -73,8 +75,7 @@ export function renderAllTasks(projects) {
             viewTask.dataset.taskId = task.id
             viewTask.innerHTML = `<i class="fas fa-info-circle" style="color : lightblue;"></i>`
 
-            viewTaskAddEventListener(viewTask, task,)
-
+            viewTaskAddEventListener(viewTask, task)
 
             const editTask = document.createElement("div")
             editTask.className = "edit_task"
@@ -110,6 +111,7 @@ export function renderAllTasks(projects) {
 
     const taskNumberElement = document.querySelector("#task_number")
     taskNumberElement.textContent = taskNumber
+
 }
 
 function addEventListenerOnDoneBtn(doneBtn, task, projects) {
@@ -119,7 +121,8 @@ function addEventListenerOnDoneBtn(doneBtn, task, projects) {
     })
 }
 
-function refreshDom(projects) {
+export function refreshDom(projects) {
+
     const tasks_list = document.querySelector(".tasks_list")
     tasks_list.innerHTML = "" // ⬅️ Vider
     renderAllTasks(projects) // ⬅️ Recréer
@@ -128,8 +131,7 @@ function refreshDom(projects) {
 function viewTaskAddEventListener(viewTask, task) {
     viewTask.addEventListener("click", function () {
         const taskId = this.dataset.taskId
-        const taskModalElement = document.querySelector("#taskModal")
-        const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'));
+
 
         taskModalElement.querySelector('.modal-title').textContent = "Task Infos"
 
@@ -159,8 +161,6 @@ function viewTaskAddEventListener(viewTask, task) {
 function editTaskAddEventListener(editTask, task, datePicker) {
     editTask.addEventListener("click", function () {
         const taskId = this.dataset.taskId
-        const taskModalElement = document.querySelector("#taskModal")
-        const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'));
 
         taskModalElement.querySelector('.modal-title').textContent = "Task Infos"
 
@@ -181,12 +181,9 @@ function editTaskAddEventListener(editTask, task, datePicker) {
         datePicker.setDate(new Date(task.dueDate), true);
         taskModalElement.querySelector('#task_due_date').disabled = false
 
-        const submitBtn = taskModalElement.querySelector("#submitBtn")
-        submitBtn.hidden = false
+        taskModalElement.querySelector("#submitBtn").dataset.taskId = task.id
+        taskModalElement.querySelector("#submitBtn").hidden = false
 
-        submitBtn.addEventListener("click", function(){
-            task.title = taskModalElement.querySelector('#task_title').value 
-        })
 
         taskModal.show();
     });

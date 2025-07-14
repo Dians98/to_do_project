@@ -1,20 +1,18 @@
 export default class Project {
     constructor(name) {
-        this.name = name;
-        this.tasks = [];
+        this._name = name;
+        this._tasks = [];
     }
 
     getAllTasks() {
-        return this.tasks
+        return this._tasks
     }
 
     addTask(task) {
-        this.tasks.push(task);
+        this._tasks.push(task);
     }
 
-    removeTask(taskId) {
-        this.tasks = this.tasks.filter(t => t.id !== taskId);
-    }
+    
 }
 
 
