@@ -59,17 +59,24 @@ export function renderAllTasks(projects) {
             const viewTask = document.createElement("div")
             viewTask.className = "view_task"
             viewTask.dataset.taskId = task.id
-            viewTask.innerHTML = `<i class="fas fa-info-circle"></i>`
+            viewTask.innerHTML = `<i class="fas fa-info-circle" style="color : lightblue;"></i>`
 
             const editTask = document.createElement("div")
-            viewTask.className = "edit_task"
-            viewTask.dataset.taskId = task.id
-            viewTask.innerHTML = `<i class="far fa-edit"></i>`
+            editTask.className = "edit_task"
+            editTask.dataset.taskId = task.id
+            editTask.innerHTML = `<i class="far fa-edit" style="color : #f6d365;"></i>`
+
+            const deleteTask = document.createElement("div")
+            deleteTask.className = "delete_task"
+            deleteTask.dataset.taskId = task.id
+            deleteTask.innerHTML = `<i class="fas fa-trash-alt" style="color : #fda085;"></i>`
 
 
             task_actions.appendChild(dateDiv)
             task_actions.appendChild(viewTask)
             task_actions.appendChild(editTask)
+            task_actions.appendChild(deleteTask)
+
             taskInfo.appendChild(doneBtn)
             taskInfo.appendChild(taskTitle)
 
