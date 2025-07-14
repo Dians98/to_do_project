@@ -15,123 +15,47 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
+import {renderAllTasks} from "./assets/js/dom.js"
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    const projects = initializeDefaultProject();
     renderAllTasks(projects)
 })
 
 
-let today = new Date()
-today = formatDate(today)
+function initializeDefaultProject() {
+    let today = new Date()
+    today = formatDate(today)
 
-//Créer un tableau d'objets
-const projects = [];
+    //Créer un tableau d'objets
+    const projects = [];
 
-const defaultProject = new Project("Default")
+    const defaultProject = new Project("Default")
 
-projects.push(defaultProject)
-
-
-const tasks = [
-    new Task(1, 'Créer le composant Task', 'Développer l’affichage d’une tâche', today),
-    new Task(2, 'Implémenter la gestion des projets', 'Associer les tâches aux projets', today),
-    new Task(3, 'Ajouter la fonctionnalité "marquer comme fait"', 'Toggle état done', today),
-    new Task(4, 'Construire la sidebar', 'Menu catégories et projets', today),
-    new Task(5, 'Intégrer le style CSS', 'Responsive design et thèmes', today),
-    new Task(6, 'Gérer le stockage local', 'Sauvegarder les tâches en localStorage', today),
-    new Task(7, 'Ajouter les filtres Today / Week / Important', 'Filtrage dynamique', today),
-    new Task(8, 'Développer les boutons CRUD', 'Créer, éditer, supprimer tâches', today),
-    new Task(9, 'Tester le rendu dynamique des tâches', 'Vérifier la mise à jour du DOM', today),
-    new Task(10, 'Préparer le déploiement GitHub Pages', 'Serveur statique avec Webpack', today)
-];
+    projects.push(defaultProject)
 
 
-tasks.forEach(task => defaultProject.addTask(task))
+    const tasks = [
+        new Task(1, 'Créer le composant Task', 'Développer l’affichage d’une tâche', today),
+        new Task(2, 'Implémenter la gestion des projets', 'Associer les tâches aux projets', today),
+        new Task(3, 'Ajouter la fonctionnalité "marquer comme fait"', 'Toggle état done', today),
+        new Task(4, 'Construire la sidebar', 'Menu catégories et projets', today),
+        new Task(5, 'Intégrer le style CSS', 'Responsive design et thèmes', today),
+        new Task(6, 'Gérer le stockage local', 'Sauvegarder les tâches en localStorage', today),
+        new Task(7, 'Ajouter les filtres Today / Week / Important', 'Filtrage dynamique', today),
+        new Task(8, 'Développer les boutons CRUD', 'Créer, éditer, supprimer tâches', today),
+        new Task(9, 'Tester le rendu dynamique des tâches', 'Vérifier la mise à jour du DOM', today),
+        new Task(10, 'Préparer le déploiement GitHub Pages', 'Serveur statique avec Webpack', today)
+    ];
 
 
-console.log(defaultProject)
+    tasks.forEach(task => defaultProject.addTask(task))
 
-function renderAllTasks(projects) {
-    const tasks_list_container = document.querySelector(".tasks_list")
-
-    tasks_list_container.innerHTML = '';
-
-    let taskNumber = 0;
-
-    projects.forEach(project => {
-        const tasks = project.getAllTasks()
-
-
-        tasks.forEach((task, index) => {
-
-            const taskItem = document.createElement("div")
-            taskItem.className = "task_item";
-
-            if (task.done) {
-                taskItem.classList.add("done");
-            } else {
-                taskItem.classList.remove("done");
-            }
-
-            const taskInfo = document.createElement("div")
-            taskInfo.className = "task_info";
-
-            const doneBtn = document.createElement("button")
-            doneBtn.className = "btn-done";
-            doneBtn.style.border = "none";
-            doneBtn.style.background = "transparent";
-            doneBtn.style.cursor = "pointer";
-            doneBtn.dataset.taskId = task.id;
-
-
-
-            // fonction pour mettre à jour l'icône selon l'état done
-            function updateIcon() {
-                doneBtn.innerHTML = task.done
-                    ? `<i class="fas fa-check-circle" style="color:#f6d365;"></i>`
-                    : `<i class="far fa-circle" style="color:#fda085;"></i>`;
-            }
-
-            updateIcon()
-
-            addEventListenerOnDoneBtn(doneBtn, task, taskItem)
-
-
-            const taskTitle = document.createElement("div")
-            taskTitle.className = "task_title";
-            taskTitle.textContent = task.title;
-
-            const task_actions = document.createElement("div")
-            task_actions.className = "task_actions";
-
-            // date
-            const dateDiv = document.createElement("div")
-            dateDiv.className = "task_date";
-            dateDiv.textContent = task.dueDate;  // tu peux formater la date si besoin
-
-
-
-
-            task_actions.appendChild(dateDiv)
-            taskInfo.appendChild(doneBtn)
-            taskInfo.appendChild(taskTitle)
-
-            taskItem.appendChild(taskInfo)
-            taskItem.appendChild(task_actions)
-
-            tasks_list_container.appendChild(taskItem)
-
-            taskNumber++
-
-
-        })
-    })
-
-    const taskNumberElement = document.querySelector("#task_number")
-    taskNumberElement.textContent = taskNumber
+    return projects
 }
+
 
 
 /**
@@ -148,18 +72,4 @@ function formatDate(date) {
 }
 
 
-function addEventListenerOnDoneBtn(doneBtn, task, taskItem) {
-    doneBtn.addEventListener("click", function () {
-        task.toggleDone()
 
-        refreshDom(projects)
-
-    })
-
-}
-
-function refreshDom(projects) {
-    const tasks_list = document.querySelector(".tasks_list");
-    tasks_list.innerHTML = ""; // ⬅️ Vider
-    renderAllTasks(projects); // ⬅️ Recréer
-}

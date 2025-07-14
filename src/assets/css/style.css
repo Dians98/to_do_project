@@ -229,3 +229,16 @@ h6 {
 .task_item.done {
   text-decoration: line-through;
 }
+
+.task_actions {
+  display: flex;
+  gap: 0.5rem;
+
+}
+
+.task_actions .view_task,
+.task_actions .edit_task,
+.task_actions .delete_task
+{
+  cursor: pointer;
+}
