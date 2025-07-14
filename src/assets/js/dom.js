@@ -1,3 +1,7 @@
+import * as bootstrap from 'bootstrap';
+import Pikaday from 'pikaday';
+import 'pikaday/css/pikaday.css';
+
 export function renderAllTasks(projects) {
     const tasks_list_container = document.querySelector(".tasks_list")
 
@@ -61,9 +65,37 @@ export function renderAllTasks(projects) {
             viewTask.dataset.taskId = task.id
             viewTask.innerHTML = `<i class="fas fa-info-circle" style="color : lightblue;"></i>`
 
-            viewTask.addEventListener("click", function() {
+            viewTask.addEventListener("click", function () {
                 const taskId = this.dataset.taskId
-                const taskModal = new bootstrap.Modal(document.getElementById('viewTaskModal'));
+                const taskModalElement = document.querySelector("#taskModal")
+                const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'));
+
+                taskModalElement.querySelector('.modal-title').textContent = "Task Infos"
+
+                taskModalElement.querySelector('#task_title').value = task.title
+                taskModalElement.querySelector('#task_title').disabled = true
+
+                taskModalElement.querySelector('#task_description').value = task.description
+                taskModalElement.querySelector('#task_description').disabled = true
+
+                taskModalElement.querySelector('#task_importance').checked = task.isImportant
+                taskModalElement.querySelector('#task_importance').disabled = true
+
+                const switchLabel = taskModalElement.querySelector('.form-check-label');
+                switchLabel.textContent = task.isImportant ? "Yes" : "No";
+
+                const dateInput = document.querySelector("#task_due_date");
+                const picker = new Pikaday({
+                    field: dateInput,
+                    format: "YYYY-MM-DD",
+// pour que la date par défaut s'affiche dans l'input
+                });
+
+                picker.setDate(task.dueDate)
+                taskModalElement.querySelector('#task_due_date').disabled = true
+                // 2. Pour mettre à jour la date ensuite (ex: dans ta modale)
+
+
                 taskModal.show();
             });
 

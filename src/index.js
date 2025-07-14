@@ -2,7 +2,7 @@ import "./assets/js/others.js"
 import "./assets/css/style.css";
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import flatpickr from "flatpickr";
 
 
 
@@ -15,13 +15,15 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
-import {renderAllTasks} from "./assets/js/dom.js"
+import { renderAllTasks } from "./assets/js/dom.js"
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const projects = initializeDefaultProject();
     renderAllTasks(projects)
+
+    
 })
 
 
@@ -38,17 +40,13 @@ function initializeDefaultProject() {
 
 
     const tasks = [
-        new Task(1, 'Créer le composant Task', 'Développer l’affichage d’une tâche', today),
-        new Task(2, 'Implémenter la gestion des projets', 'Associer les tâches aux projets', today),
-        new Task(3, 'Ajouter la fonctionnalité "marquer comme fait"', 'Toggle état done', today),
-        new Task(4, 'Construire la sidebar', 'Menu catégories et projets', today),
-        new Task(5, 'Intégrer le style CSS', 'Responsive design et thèmes', today),
-        new Task(6, 'Gérer le stockage local', 'Sauvegarder les tâches en localStorage', today),
-        new Task(7, 'Ajouter les filtres Today / Week / Important', 'Filtrage dynamique', today),
-        new Task(8, 'Développer les boutons CRUD', 'Créer, éditer, supprimer tâches', today),
-        new Task(9, 'Tester le rendu dynamique des tâches', 'Vérifier la mise à jour du DOM', today),
-        new Task(10, 'Préparer le déploiement GitHub Pages', 'Serveur statique avec Webpack', today)
+        new Task(1, 'Create Task component', 'Develop the task display UI', today),
+        new Task(2, 'Implement project management', 'Associate tasks with projects', today, true),
+        new Task(3, 'Add "mark as done" feature', 'Toggle done state', today),
+        new Task(4, 'Build sidebar', 'Menu for categories and projects', today, true),
+        new Task(5, 'Style integration', 'Responsive design and theming', today)
     ];
+
 
 
     tasks.forEach(task => defaultProject.addTask(task))

@@ -109,7 +109,8 @@ h6 {
   padding: 0 !important;
 }
 
-.navbar {
+.navbar, 
+.modal-header{
   background: linear-gradient(90deg, #fda085, #f6d365);
 }
 
@@ -244,6 +245,12 @@ h6 {
 
 .task_actions .view_task:hover,
 .task_actions .edit_task:hover,
-.task_actions .delete_task:hover {
-  transform: scale(1.3);
+.task_actions .delete_task:hover ,
+.btn-done:hover{
+  transform: scale(1.2);
+}
+
+
+.modal-content{
+  margin-top: 10rem;
 }
