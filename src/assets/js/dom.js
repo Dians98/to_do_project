@@ -58,14 +58,14 @@ export function renderAllTasks(projects) {
             // date
             const dateDiv = document.createElement("div")
             dateDiv.className = "task_date"
-            dateDiv.textContent = task.dueDate // tu peux formater la date si besoin
+            dateDiv.textContent = task.dueDate 
 
             const viewTask = document.createElement("div")
             viewTask.className = "view_task"
             viewTask.dataset.taskId = task.id
             viewTask.innerHTML = `<i class="fas fa-info-circle" style="color : lightblue;"></i>`
 
-            ViewEventListener(viewTask,task)
+            viewTaskAddEventListener(viewTask, task)
 
 
             const editTask = document.createElement("div")
@@ -115,7 +115,7 @@ function refreshDom(projects) {
     renderAllTasks(projects) // ⬅️ Recréer
 }
 
-function ViewEventListener(viewTask,task) {
+function viewTaskAddEventListener(viewTask, task) {
     viewTask.addEventListener("click", function () {
         const taskId = this.dataset.taskId
         const taskModalElement = document.querySelector("#taskModal")
@@ -135,16 +135,10 @@ function ViewEventListener(viewTask,task) {
         const switchLabel = taskModalElement.querySelector('.form-check-label');
         switchLabel.textContent = task.isImportant ? "Yes" : "No";
 
-        const dateInput = document.querySelector("#task_due_date");
-        const picker = new Pikaday({
-            field: dateInput,
-            format: "YYYY-MM-DD",
-            // pour que la date par défaut s'affiche dans l'input
-        });
-
-        picker.setDate(task.dueDate)
+        
         taskModalElement.querySelector('#task_due_date').disabled = true
-        // 2. Pour mettre à jour la date ensuite (ex: dans ta modale)
+        taskModalElement.querySelector('#task_due_date').value = task.dueDate
+        
 
 
         taskModal.show();
