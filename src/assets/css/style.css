@@ -254,3 +254,7 @@ h6 {
 .modal-content{
   margin-top: 10rem;
 }
+
+#task_importance{
+  cursor: pointer;
+}
