@@ -23,7 +23,7 @@ export function renderAllTasks(projects) {
 
 
     projects.forEach(project => {
-        const tasks = project.getAllTasks()
+        const tasks = project.tasks
 
         tasks.forEach((task, index) => {
 
@@ -113,6 +113,31 @@ export function renderAllTasks(projects) {
     taskNumberElement.textContent = taskNumber
 
 }
+
+export function renderAllProjects(projects) {
+    
+    const to_do_projects_list_container = document.querySelector(".to_do_projects_list_container")
+    to_do_projects_list_container.innerHTML = '' // Vider la liste des projets
+
+    projects.forEach(project =>  {
+        const to_do_projects_list = document.createElement("div")
+        to_do_projects_list.className = "to_do_projects_list"
+        
+        const projectIcon = document.createElement("i")
+        projectIcon.className = "fas fa-project-diagram"
+
+        const projectName = document.createElement("span")
+        projectName.textContent = project.name
+
+        to_do_projects_list.appendChild(projectIcon)
+        to_do_projects_list.appendChild(projectName)
+
+        to_do_projects_list_container.appendChild(to_do_projects_list)
+
+    })
+    
+}
+
 
 function addEventListenerOnDoneBtn(doneBtn, task, projects) {
     doneBtn.addEventListener("click", function () {

@@ -4,9 +4,18 @@ export default class Project {
         this._tasks = [];
     }
 
-    getAllTasks() {
-        return this._tasks
+    set name(name) {
+        this._name = name;
     }
+
+    get name() {
+        return this._name;
+    }
+
+    get tasks() {
+        return this._tasks;
+    }
+    
 
     addTask(task) {
         this._tasks.push(task);

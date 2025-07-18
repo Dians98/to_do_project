@@ -15,7 +15,7 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
-import { renderAllTasks } from "./assets/js/dom.js"
+import { renderAllTasks, renderAllProjects } from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
 import { taskModal, taskModalElement } from './assets/js/dom.js';
 
@@ -23,6 +23,7 @@ import { taskModal, taskModalElement } from './assets/js/dom.js';
 document.addEventListener('DOMContentLoaded', () => {
     const projects = initializeDefaultProject();
     renderAllTasks(projects)
+    renderAllProjects(projects)
 
     const submitBtn = taskModalElement.querySelector("#submitBtn");
 
@@ -61,8 +62,6 @@ function initializeDefaultProject() {
         new Task(4, 'Build sidebar', 'Menu for categories and projects', today, true),
         new Task(5, 'Style integration', 'Responsive design and theming', today)
     ];
-
-
 
     tasks.forEach(task => defaultProject.addTask(task))
 
