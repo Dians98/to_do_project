@@ -16,9 +16,16 @@ export default class Project {
         return this._tasks;
     }
     
+    set tasks(tasks) {
+        this._tasks = tasks;
+    }
 
     addTask(task) {
         this._tasks.push(task);
+    }
+
+    removeTask(taskId) {
+        this._tasks = this._tasks.filter(task => task.id != taskId);
     }
 
     getTaskById (id){

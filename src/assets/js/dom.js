@@ -89,6 +89,8 @@ export function renderAllTasks(projects) {
             deleteTask.dataset.taskId = task.id
             deleteTask.innerHTML = `<i class="fas fa-trash-alt" style="color : #fda085;"></i>`
 
+            deleteTaskAddEventListener(deleteTask, task.id, projects)
+
 
             task_actions.appendChild(dateDiv)
             task_actions.appendChild(viewTask)
@@ -115,14 +117,14 @@ export function renderAllTasks(projects) {
 }
 
 export function renderAllProjects(projects) {
-    
+
     const to_do_projects_list_container = document.querySelector(".to_do_projects_list_container")
     to_do_projects_list_container.innerHTML = '' // Vider la liste des projets
 
-    projects.forEach(project =>  {
+    projects.forEach(project => {
         const to_do_projects_list = document.createElement("div")
         to_do_projects_list.className = "to_do_projects_list"
-        
+
         const projectIcon = document.createElement("i")
         projectIcon.className = "fas fa-project-diagram"
 
@@ -135,7 +137,7 @@ export function renderAllProjects(projects) {
         to_do_projects_list_container.appendChild(to_do_projects_list)
 
     })
-    
+
 }
 
 
@@ -211,5 +213,30 @@ function editTaskAddEventListener(editTask, task, datePicker) {
 
 
         taskModal.show();
+    });
+}
+
+function deleteTaskAddEventListener(deleteTask, taskId, projects) {
+    
+    deleteTask.addEventListener("click", function () {
+        
+        const taskId = this.dataset.taskId
+
+        if (taskId) {
+            
+            const project = projects.find(project =>
+                project.tasks.some(task => task.id == taskId)
+            );
+
+            console.log(project)
+            if (project) {
+                project.removeTask(taskId);
+                console.log("apres remove")
+                console.log(project)
+                refreshDom(projects);
+            } else {
+                console.error(`Task with ID ${taskId} not found in any project.`);
+            }
+        }
     });
 }
