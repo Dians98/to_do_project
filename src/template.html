@@ -165,13 +165,35 @@
                 <div class="modal-body">
                     <form action="#" method="post">
                         <div class="mb-3">
-                            <label class="form-label">Project * </label>
+                            <label class="form-label">Project  </label>
                             <select class="form-select" aria-label="Default select example" id="project_select">
                                 
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Title</label>
+                            <label class="form-label">Title </label>
+                            <div class="d-flex flex-column  gap-2">
+                                <input class="form-control" id="project_name" aria-describedby="emailHelp">
+                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <div class="d-flex flex-column  gap-2">
+                                <textarea  class="form-control" id="project_name" aria-describedby="emailHelp" rows="3"> </textarea>
+                                <span  class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DueDate</label>
+                            <div class="d-flex flex-column gap-2 position-relative align-items-center justify-content-center" style="height: 100%;">
+                                <i class="fa-solid fa-calendar-days position-absolute" style="top: 50%; right: 1rem; transform: translateY(-50%);"></i>
+                                <input class="form-control" id="add_task_due_date" aria-describedby="emailHelp">
+                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Importance</label>
                             <div class="d-flex flex-column  gap-2">
                                 <input class="form-control" id="project_name" aria-describedby="emailHelp">
                                 <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>

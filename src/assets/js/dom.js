@@ -4,11 +4,24 @@ import 'pikaday/css/pikaday.css';
 
 const taskDueDate = document.querySelector("#task_due_date");
 
-let datePicker;
-datePicker = new Pikaday({
+const addTaskDueDate = document.querySelector("#add_task_due_date");
+
+
+
+let datePicker1;
+datePicker1 = new Pikaday({
     field: taskDueDate,
     format: "YYYY-MM-DD",
     setDefaultDate: false,
+});
+
+let datePicker2;
+datePicker2 = new Pikaday({
+    field: addTaskDueDate,
+    format: "YYYY-MM-DD",
+    setDefaultDate: true,
+    defaultDate: new Date(),
+    minDate: new Date(),
 });
 
 export const taskModalElement = document.querySelector("#taskModal")
@@ -90,7 +103,7 @@ export function renderAllTasks(projects) {
             editTask.dataset.taskId = task.id
             editTask.innerHTML = `<i class="far fa-edit" style="color : #f6d365;"></i>`
 
-            editTaskAddEventListener(editTask, task, datePicker)
+            editTaskAddEventListener(editTask, task, datePicker1)
 
             const deleteTask = document.createElement("div")
             deleteTask.className = "delete_task"
@@ -190,7 +203,6 @@ function viewTaskAddEventListener(viewTask, task) {
 
         const switchLabel = taskModalElement.querySelector('.form-check-label');
         switchLabel.textContent = task.isImportant ? "Yes" : "No";
-
 
         taskModalElement.querySelector('#task_due_date').disabled = true
         taskModalElement.querySelector('#task_due_date').value = task.dueDate
