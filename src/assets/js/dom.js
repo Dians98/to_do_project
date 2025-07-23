@@ -16,6 +16,12 @@ export const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'
 
 export const addProjectModal = document.querySelector("#addProjectModal")
 export const addProjectModalInstance = new bootstrap.Modal(document.querySelector('#addProjectModal'))
+
+export const addTaskModal = document.querySelector("#addTaskModal")
+
+export const addTaskModalInstance = new bootstrap.Modal(document.querySelector('#addTaskModal'))
+
+
 export function renderAllTasks(projects) {
     const tasks_list_container = document.querySelector(".tasks_list")
 
@@ -137,7 +143,6 @@ export function renderAllProjects(projects) {
         to_do_projects_list.appendChild(projectName)
 
         to_do_projects_list_container.appendChild(to_do_projects_list)
-
     })
 
 }
@@ -160,7 +165,11 @@ export function refreshDom(projects) {
     to_do_projects_list_container.innerHTML = "" // ⬅️ Vider
     renderAllProjects(projects) // ⬅️ Recréer
 
-    
+    const project_select = addTaskModal.querySelector("#project_select")
+    initializeProjectSelect(project_select, projects)
+
+
+
 }
 
 function viewTaskAddEventListener(viewTask, task) {
@@ -225,13 +234,13 @@ function editTaskAddEventListener(editTask, task, datePicker) {
 }
 
 function deleteTaskAddEventListener(deleteTask, taskId, projects) {
-    
+
     deleteTask.addEventListener("click", function () {
-        
+
         const taskId = this.dataset.taskId
 
         if (taskId) {
-            
+
             const project = projects.find(project =>
                 project.tasks.some(task => task.id == taskId)
             );
@@ -247,4 +256,15 @@ function deleteTaskAddEventListener(deleteTask, taskId, projects) {
             }
         }
     });
+}
+
+export function initializeProjectSelect(project_select, projects) {
+    project_select.innerHTML = ""
+    projects.forEach(project => {
+        const option = document.createElement("option");
+        option.value = project.id;
+        option.textContent = project.name;
+        project_select.appendChild(option);
+    }
+    );
 }

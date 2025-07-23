@@ -1,7 +1,11 @@
 export default class Project {
-    constructor(name) {
+    constructor(id, name) {
+        this._id = id;
         this._name = name;
         this._tasks = [];
+    }
+    get id() {
+        return this._id;
     }
 
     set name(name) {

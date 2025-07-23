@@ -17,7 +17,7 @@ import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
 import { renderAllTasks, renderAllProjects } from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
-import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance } from './assets/js/dom.js';
+import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance,addTaskModal,addTaskModalInstance , initializeProjectSelect} from './assets/js/dom.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +25,40 @@ document.addEventListener('DOMContentLoaded', () => {
     renderAllTasks(projects)
     renderAllProjects(projects)
 
+    const project_select = addTaskModal.querySelector("#project_select");
+
+    initializeProjectSelect(project_select, projects)
+
+    /**event sur le bouton d'ajout de project */
+    const AddProjectModalBtn = addProjectModal.querySelector("#AddProjectModalBtn");
+
+    AddProjectModalBtn.addEventListener("click", function () {
+        const name = addProjectModal.querySelector("#project_name").value
+        const id = projects.length + 1
+        if (name.trim() === "") {
+            addProjectModal.querySelector(".project_name_error").style.display = "block";
+            addProjectModal.querySelector(".project_name_error").textContent = "Please enter a project name";
+            return;
+        }
+
+        if (projects.some(project => project.name === name)) {
+            addProjectModal.querySelector(".project_name_error").style.display = "block";
+            addProjectModal.querySelector(".project_name_error").textContent = "Project name already exists";
+            return;
+        }
+
+        addProjectModal.querySelector(".project_name_error").style.display = "none";
+
+        // Créer un nouvel objet Project et l'ajouter au tableau projects
+        const newProject = new Project(id,name);
+        projects.push(newProject);
+
+        addProjectModalInstance.hide()
+
+        refreshDom(projects)
+    });
+
+    /**event sur le bouton d'ajout de modification de tache */
     const submitBtn = taskModalElement.querySelector("#submitBtn");
 
     submitBtn.addEventListener("click", function () {
@@ -41,33 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshDom(projects)
     });
 
-    const AddProjectModalBtn = addProjectModal.querySelector("#AddProjectModalBtn");
-
-    AddProjectModalBtn.addEventListener("click", function () {
-        const name = addProjectModal.querySelector("#project_name").value
-
-        if (name.trim() === "") {
-            addProjectModal.querySelector(".project_name_error").style.display = "block";
-            addProjectModal.querySelector(".project_name_error").textContent = "Please enter a project name";
-            return;
-        }
-
-        if (projects.some(project => project.name === name)) {
-            addProjectModal.querySelector(".project_name_error").style.display = "block";
-            addProjectModal.querySelector(".project_name_error").textContent = "Project name already exists";
-            return;
-        }
-
-        addProjectModal.querySelector(".project_name_error").style.display = "none";
-
-        // Créer un nouvel objet Project et l'ajouter au tableau projects
-        const newProject = new Project(name);
-        projects.push(newProject);
-
-        addProjectModalInstance.hide()
-
-        refreshDom(projects)
-    });
+    
 })
 
 
@@ -78,7 +86,7 @@ function initializeDefaultProject() {
     //Créer un tableau d'objets
     const projects = [];
 
-    const defaultProject = new Project("Default")
+    const defaultProject = new Project(1,"Default")
 
     projects.push(defaultProject)
 
