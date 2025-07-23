@@ -258,3 +258,9 @@ h6 {
 #task_importance{
   cursor: pointer;
 }
+
+.to_do_projects_title{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

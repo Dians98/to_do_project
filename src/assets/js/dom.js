@@ -12,8 +12,10 @@ datePicker = new Pikaday({
 });
 
 export const taskModalElement = document.querySelector("#taskModal")
-export const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'));
+export const taskModal = new bootstrap.Modal(document.querySelector('#taskModal'))
 
+export const addProjectModal = document.querySelector("#addProjectModal")
+export const addProjectModalInstance = new bootstrap.Modal(document.querySelector('#addProjectModal'))
 export function renderAllTasks(projects) {
     const tasks_list_container = document.querySelector(".tasks_list")
 
@@ -153,6 +155,12 @@ export function refreshDom(projects) {
     const tasks_list = document.querySelector(".tasks_list")
     tasks_list.innerHTML = "" // ⬅️ Vider
     renderAllTasks(projects) // ⬅️ Recréer
+
+    const to_do_projects_list_container = document.querySelector(".to_do_projects_list_container")
+    to_do_projects_list_container.innerHTML = "" // ⬅️ Vider
+    renderAllProjects(projects) // ⬅️ Recréer
+
+    
 }
 
 function viewTaskAddEventListener(viewTask, task) {
