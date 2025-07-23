@@ -17,11 +17,18 @@ import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
 import { renderAllTasks, renderAllProjects } from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
-import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance,addTaskModal,addTaskModalInstance , initializeProjectSelect} from './assets/js/dom.js';
+import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance, addTaskModal, addTaskModalInstance, initializeProjectSelect } from './assets/js/dom.js';
 
+let lastTaskId;
+
+function getNextTaskId() {
+    return lastTaskId += 1;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    const projects = initializeDefaultProject();
+    const { projects, taskLength } = initializeDefaultProject();
+    lastTaskId = taskLength; // Initialiser lastTaskId avec le nombre de tâches
+    
     renderAllTasks(projects)
     renderAllProjects(projects)
 
@@ -50,13 +57,43 @@ document.addEventListener('DOMContentLoaded', () => {
         addProjectModal.querySelector(".project_name_error").style.display = "none";
 
         // Créer un nouvel objet Project et l'ajouter au tableau projects
-        const newProject = new Project(id,name);
+        const newProject = new Project(id, name);
         projects.push(newProject);
 
         addProjectModalInstance.hide()
 
         refreshDom(projects)
     });
+
+
+    const addTaskModalBtn = addTaskModal.querySelector("#addtaskModalBtn");
+    addTaskModalBtn.addEventListener("click", function () {
+
+        const title = addTaskModal.querySelector("#add_task_title").value;
+        const description = addTaskModal.querySelector("#add_task_desc").value;
+        const dueDate = addTaskModal.querySelector("#add_task_due_date").value;
+        const isImportant = addTaskModal.querySelector("#add_task_importance").checked;
+
+        const projectSelect = addTaskModal.querySelector("#project_select");
+        const projectId = projectSelect.value;
+
+
+
+        let project = projects.find(project => project.id == projectId)
+
+
+        let taskId = getNextTaskId()
+        alert(taskId)
+
+        const task = new Task(taskId, title, description, dueDate, isImportant);
+        project.addTask(task);
+
+
+        addTaskModalInstance.hide()
+        refreshDom(projects)
+
+    })
+
 
     /**event sur le bouton d'ajout de modification de tache */
     const submitBtn = taskModalElement.querySelector("#submitBtn");
@@ -75,18 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshDom(projects)
     });
 
-    
+
 })
 
 
-function initializeDefaultProject() {
+function initializeDefaultProject(lastTaskId) {
     let today = new Date()
     today = formatDate(today)
 
     //Créer un tableau d'objets
     const projects = [];
 
-    const defaultProject = new Project(1,"Default")
+    const defaultProject = new Project(1, "Default")
 
     projects.push(defaultProject)
 
@@ -99,9 +136,11 @@ function initializeDefaultProject() {
         new Task(5, 'Style integration', 'Responsive design and theming', today)
     ];
 
+    const taskLength = tasks.length; // Initialiser lastTaskId avec le nombre de tâches
+
     tasks.forEach(task => defaultProject.addTask(task))
 
-    return projects
+    return { projects, taskLength };
 }
 
 

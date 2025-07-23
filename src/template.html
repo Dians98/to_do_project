@@ -60,8 +60,8 @@
             <!-- NAVBAR -->
             <main class="col-md-10 main_content">
                 <nav class="navbar d-flex justify-content-end align-items-center p-3 border-bottom">
-                    <button class="btn btn-add-task" data-bs-toggle="modal"
-                    data-bs-target="#addTaskModal"><i class="fa-solid fa-plus"></i> Ajouter une tache</button>
+                    <button class="btn btn-add-task" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                            class="fa-solid fa-plus"></i> Ajouter une tache</button>
                 </nav>
 
                 <div class="to_do_container">
@@ -135,21 +135,23 @@
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post">
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <div class="d-flex flex-column  gap-2">
                                 <input class="form-control" id="project_name" aria-describedby="emailHelp">
-                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                                <span class="project_name_error"
+                                    style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
                             </div>
-                            
+
                         </div>
-                        
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn" id="AddProjectModalBtn" style="background-color:#fda085;">Save</button>
+                    <button type="button" class="btn" id="AddProjectModalBtn"
+                        style="background-color:#fda085;">Save</button>
                 </div>
             </div>
         </div>
@@ -165,46 +167,56 @@
                 <div class="modal-body">
                     <form action="#" method="post">
                         <div class="mb-3">
-                            <label class="form-label">Project  </label>
+                            <label class="form-label">Project </label>
                             <select class="form-select" aria-label="Default select example" id="project_select">
-                                
+
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Title </label>
                             <div class="d-flex flex-column  gap-2">
-                                <input class="form-control" id="project_name" aria-describedby="emailHelp">
-                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                                <input class="form-control" id="add_task_title" aria-describedby="emailHelp">
+                                <span class="project_name_error"
+                                    style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Description</label>
                             <div class="d-flex flex-column  gap-2">
-                                <textarea  class="form-control" id="project_name" aria-describedby="emailHelp" rows="3"> </textarea>
-                                <span  class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                                <textarea class="form-control" id="add_task_desc" aria-describedby="emailHelp"
+                                    rows="3"> </textarea>
+                                <span class="project_name_error"
+                                    style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">DueDate</label>
-                            <div class="d-flex flex-column gap-2 position-relative align-items-center justify-content-center" style="height: 100%;">
-                                <i class="fa-solid fa-calendar-days position-absolute" style="top: 50%; right: 1rem; transform: translateY(-50%);"></i>
+                            <div class="d-flex flex-column gap-2 position-relative align-items-center justify-content-center"
+                                style="height: 100%;">
+                                <i class="fa-solid fa-calendar-days position-absolute"
+                                    style="top: 50%; right: 1rem; transform: translateY(-50%);"></i>
                                 <input class="form-control" id="add_task_due_date" aria-describedby="emailHelp">
-                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                                <span class="project_name_error"
+                                    style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Importance</label>
-                            <div class="d-flex flex-column  gap-2">
-                                <input class="form-control" id="project_name" aria-describedby="emailHelp">
-                                <span class="project_name_error" style="color: red;display: none;font-style: italic;font-size: 0.8rem;"></span>
+                        <div class="mb-3" style="
+                            display: flex;
+                            gap: 1rem;
+                        ">
+                            <label class="form-label">Is important ? </label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="add_task_importance">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn" id="AddtaskModalBtn" style="background-color:#fda085;">Save</button>
+                    <button type="button" class="btn" id="addtaskModalBtn"
+                        style="background-color:#fda085;">Save</button>
                 </div>
             </div>
         </div>

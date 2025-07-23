@@ -1,6 +1,6 @@
 export default class Task {
     constructor(id,title, description, dueDate, isImportant = false) {
-        this._id = id;
+        this._id = id ;
         this._title = title;
         this._description = description;
         this._dueDate = dueDate;
@@ -10,6 +10,10 @@ export default class Task {
 
     toggleDone() {
         this.done = !this.done;
+    }
+
+    set lastId(id) {
+        this.lastId = id;
     }
     get id(){
         return this._id
