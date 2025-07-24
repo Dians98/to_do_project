@@ -114,13 +114,13 @@ h6 {
   background: linear-gradient(90deg, #fda085, #f6d365);
 }
 
-.task_category {
+.side_menu {
   background-color: #f6d365;
   padding: 1rem;
   cursor: pointer;
 }
 
-.task_category:not(.active) {
+.side_menu:not(.active) {
   background-color: #fff9db;
   /* un jaune très pâle, doux */
   color: #5a4d00;

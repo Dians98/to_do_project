@@ -1,25 +1,24 @@
-const task_categories = document.querySelectorAll(".task_category");
-const to_do_projects_lists = document.querySelectorAll(".to_do_projects_list");
-
-
-task_categories.forEach(task_category => {
-    task_category.addEventListener("click", function () {
+document.querySelector(".sidebar_menus").addEventListener("click", function (e) {
+    const target = e.target.closest(".side_menu");
+    if (target) {
         remove_all_active_menu();
-        this.classList.add("active")
-    })
+        target.classList.add("active");
+    }
 });
 
-to_do_projects_lists.forEach(to_do_projects_list => {
-    to_do_projects_list.addEventListener("click", function () {
-        remove_all_active_menu();
-        this.classList.add("active")
-    })
-});
+
 
 /**
  * CETTE FONCTION ENLEVE TOUS LES ACTIVE DES MENUS 
  */
 function remove_all_active_menu() {
-    task_categories.forEach(tc => tc.classList.remove("active"));
-    to_do_projects_lists.forEach(tdpl => tdpl.classList.remove("active"));
+    document.querySelectorAll(".side_menu").forEach( side_menu => side_menu.classList.remove("active"));
 }
+
+document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
+    const target = e.target.closest(".side_menu");
+    if (target) {
+        remove_all_active_menu();
+        target.classList.add("active");
+    }
+});
