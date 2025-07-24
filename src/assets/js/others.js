@@ -1,8 +1,13 @@
-document.querySelector(".sidebar_menus").addEventListener("click", function (e) {
-    const target = e.target.closest(".side_menu");
+document.querySelector(".to_do_categories").addEventListener("click", function (e) {
+    const target = e.target.closest(".task_category");
     if (target) {
         remove_all_active_menu();
         target.classList.add("active");
+
+        const id = target.id;
+        alert(id);
+
+        renderDynamicView(id)
     }
 });
 
@@ -20,5 +25,12 @@ document.querySelector(".to_do_projects_list_container").addEventListener("click
     if (target) {
         remove_all_active_menu();
         target.classList.add("active");
+        const id = target.id;
+        alert(id);
+        renderDynamicView(id)
     }
 });
+
+function renderDynamicView(id) {
+    console.log("renderDynamicView called with id:", id);
+}

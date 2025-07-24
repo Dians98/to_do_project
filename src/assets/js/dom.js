@@ -144,7 +144,8 @@ export function renderAllProjects(projects) {
 
     projects.forEach(project => {
         const to_do_projects_list = document.createElement("div")
-        to_do_projects_list.className = "side_menu"
+        to_do_projects_list.className = "project_list side_menu"
+        to_do_projects_list.id = project.id
 
         const projectIcon = document.createElement("i")
         projectIcon.className = "fas fa-project-diagram"
