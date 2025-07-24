@@ -1,6 +1,7 @@
 import * as bootstrap from 'bootstrap';
 import Pikaday from 'pikaday';
 import 'pikaday/css/pikaday.css';
+import Project from './Project.js';
 
 const taskDueDate = document.querySelector("#task_due_date");
 
@@ -281,3 +282,33 @@ export function initializeProjectSelect(project_select, projects) {
     }
     );
 }
+
+export function add_event_listener_on_add_project_modal_btn(AddProjectModalBtn, projects, addProjectModalInstance, addProjectModal) {
+    AddProjectModalBtn.addEventListener("click", function () {
+        const name = addProjectModal.querySelector("#project_name").value
+        const id = projects.length + 1
+        if (name.trim() === "") {
+            addProjectModal.querySelector(".project_name_error").style.display = "block";
+            addProjectModal.querySelector(".project_name_error").textContent = "Please enter a project name";
+            return;
+        }
+
+        if (projects.some(project => project.name === name)) {
+            addProjectModal.querySelector(".project_name_error").style.display = "block";
+            addProjectModal.querySelector(".project_name_error").textContent = "Project name already exists";
+            return;
+        }
+
+        addProjectModal.querySelector(".project_name_error").style.display = "none";
+
+        // Créer un nouvel objet Project et l'ajouter au tableau projects
+        const newProject = new Project(id, name);
+        projects.push(newProject);
+
+        addProjectModalInstance.hide()
+
+        refreshDom(projects)
+    });
+
+}
+

@@ -1,4 +1,4 @@
-import "./assets/js/others.js"
+import "./assets/js/utils.js"
 import "./assets/css/style.css";
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -15,7 +15,7 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
-import { renderAllTasks, renderAllProjects } from "./assets/js/dom.js"
+import { renderAllTasks, renderAllProjects , add_event_listener_on_add_project_modal_btn} from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
 import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance, addTaskModal, addTaskModalInstance, initializeProjectSelect } from './assets/js/dom.js';
 
@@ -28,7 +28,7 @@ function getNextTaskId() {
 document.addEventListener('DOMContentLoaded', () => {
     const { projects, taskLength } = initializeDefaultProject();
     lastTaskId = taskLength; // Initialiser lastTaskId avec le nombre de tâches
-    
+
     renderAllTasks(projects)
     renderAllProjects(projects)
 
@@ -39,32 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**event sur le bouton d'ajout de project */
     const AddProjectModalBtn = addProjectModal.querySelector("#AddProjectModalBtn");
 
-    AddProjectModalBtn.addEventListener("click", function () {
-        const name = addProjectModal.querySelector("#project_name").value
-        const id = projects.length + 1
-        if (name.trim() === "") {
-            addProjectModal.querySelector(".project_name_error").style.display = "block";
-            addProjectModal.querySelector(".project_name_error").textContent = "Please enter a project name";
-            return;
-        }
-
-        if (projects.some(project => project.name === name)) {
-            addProjectModal.querySelector(".project_name_error").style.display = "block";
-            addProjectModal.querySelector(".project_name_error").textContent = "Project name already exists";
-            return;
-        }
-
-        addProjectModal.querySelector(".project_name_error").style.display = "none";
-
-        // Créer un nouvel objet Project et l'ajouter au tableau projects
-        const newProject = new Project(id, name);
-        projects.push(newProject);
-
-        addProjectModalInstance.hide()
-
-        refreshDom(projects)
-    });
-
+    add_event_listener_on_add_project_modal_btn(AddProjectModalBtn, projects, addProjectModalInstance, addProjectModal)
 
     const addTaskModalBtn = addTaskModal.querySelector("#addtaskModalBtn");
     addTaskModalBtn.addEventListener("click", function () {
@@ -111,6 +86,38 @@ document.addEventListener('DOMContentLoaded', () => {
         taskModal.hide()
         refreshDom(projects)
     });
+
+
+
+
+    document.querySelector(".to_do_categories").addEventListener("click", function (e) {
+        const target = e.target.closest(".task_category");
+        if (target) {
+            remove_all_active_menu();
+            target.classList.add("active");
+
+            const id = target.id;
+
+            
+        }
+    });
+
+
+
+    
+
+    document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
+        const target = e.target.closest(".side_menu");
+        if (target) {
+            remove_all_active_menu();
+            target.classList.add("active");
+            const id = target.id;
+
+           
+        }
+    });
+
+
 
 
 })
@@ -167,6 +174,21 @@ function findTaskById(projects, taskId) {
         if (task) return task;
     }
     return null;
+}
+
+/**
+     * CETTE FONCTION ENLEVE TOUS LES ACTIVE DES MENUS 
+     */
+function remove_all_active_menu() {
+    document.querySelectorAll(".side_menu").forEach(side_menu => side_menu.classList.remove("active"));
+}
+
+export function renderDynamicView(id) {
+    switch (id) {
+        case "all":
+            renderAllTasks(projects);
+            break;
+    }
 }
 
 
