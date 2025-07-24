@@ -43,6 +43,8 @@ export function renderAllTasks(projects) {
 
     tasks_list_container.innerHTML = ''
 
+    document.querySelector("#dynamic_to_do_title").textContent = "All";
+
     let taskNumber = 0
 
 
@@ -383,7 +385,7 @@ export function remove_all_active_menu() {
 
 
 
-export function add_event_listener_on_to_do_category() {
+export function add_event_listener_on_to_do_category(project) {
     document.querySelector(".to_do_categories").addEventListener("click", function (e) {
         const target = e.target.closest(".task_category");
         if (target) {
@@ -391,11 +393,12 @@ export function add_event_listener_on_to_do_category() {
             target.classList.add("active");
             const id = target.id;
 
+            renderDynamicView(id, project);
         }
     });
 }
 
-export function add_event_listener_on_project_list() {
+export function add_event_listener_on_project_list(projects) {
     document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
         const target = e.target.closest(".side_menu");
         if (target) {
@@ -408,11 +411,15 @@ export function add_event_listener_on_project_list() {
     });
 }
 
-function renderDynamicView(id) {
+function renderDynamicView(id, projects) {
+    const test = []
     switch (id) {
         case "all":
             renderAllTasks(projects);
             break;
+        case "today":
+            const today = new Date();
+            renderAllTasks(test);
     }
 }
 

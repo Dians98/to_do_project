@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     add_event_listener_on_submit_btn(submitBtn, projects, taskModalElement, taskModal, project_select);
 
-    add_event_listener_on_to_do_category()
+    add_event_listener_on_to_do_category(projects)
 
-    add_event_listener_on_project_list()
+    add_event_listener_on_project_list(projects)
 
 })
 
