@@ -15,7 +15,7 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
-import { renderAllTasks, renderAllProjects, add_event_listener_on_add_project_modal_btn, add_event_listener_on_add_task_modal_btn } from "./assets/js/dom.js"
+import { add_event_listener_on_to_do_category, add_event_listener_on_project_list, formatDate, renderAllTasks, renderAllProjects, add_event_listener_on_add_project_modal_btn, add_event_listener_on_add_task_modal_btn, add_event_listener_on_submit_btn } from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
 import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance, addTaskModal, addTaskModalInstance, initializeProjectSelect } from './assets/js/dom.js';
 
@@ -48,49 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     /**event sur le bouton d'ajout de modification de tache */
     const submitBtn = taskModalElement.querySelector("#submitBtn");
 
-    submitBtn.addEventListener("click", function () {
-        const taskId = this.dataset.taskId
-        const task = findTaskById(projects, taskId)
-
-        task.title = taskModalElement.querySelector("#task_title").value
-        task.description = taskModalElement.querySelector("#task_description").value
-        task.isImportant = taskModalElement.querySelector("#task_importance").checked ? true : false
-        task.dueDate = taskModalElement.querySelector("#task_due_date").value
-
-
-        taskModal.hide()
-        refreshDom(projects)
-    });
+    add_event_listener_on_submit_btn(submitBtn, projects, taskModalElement, taskModal, project_select);
+    
 
 
 
 
-    document.querySelector(".to_do_categories").addEventListener("click", function (e) {
-        const target = e.target.closest(".task_category");
-        if (target) {
-            remove_all_active_menu();
-            target.classList.add("active");
+    add_event_listener_on_to_do_category()
 
-            const id = target.id;
-
-
-        }
-    });
+    add_event_listener_on_project_list()
 
 
 
-
-
-    document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
-        const target = e.target.closest(".side_menu");
-        if (target) {
-            remove_all_active_menu();
-            target.classList.add("active");
-            const id = target.id;
-
-
-        }
-    });
+    
 
 
 
@@ -133,30 +103,7 @@ function initializeDefaultProject(lastTaskId) {
  * @returns 
  * CETTE FONCTION RETOURNE LA DATE FORMATTEE DE TYPE yyyy-mm-dd
  */
-function formatDate(date) {
-    const y = date.getFullYear()
-    const m = (date.getMonth() + 1).toString().padStart(2, '0')
-    const day = date.getDate().toString().padStart(2, '0')
-    return `${y}-${m}-${day}`;
-}
 
-function findTaskById(projects, taskId) {
-    /**
-     * PERMETS DE SORITR DE LA BOUCLE UNE FOIS LA TACHE TROUVEE
-     */
-    for (const project of projects) {
-        const task = project.getTaskById(taskId);
-        if (task) return task;
-    }
-    return null;
-}
-
-/**
-     * CETTE FONCTION ENLEVE TOUS LES ACTIVE DES MENUS 
-     */
-function remove_all_active_menu() {
-    document.querySelectorAll(".side_menu").forEach(side_menu => side_menu.classList.remove("active"));
-}
 
 export function renderDynamicView(id) {
     switch (id) {

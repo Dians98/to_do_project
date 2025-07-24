@@ -342,3 +342,68 @@ export function add_event_listener_on_add_task_modal_btn(addTaskModalBtn, projec
     })
 }
 
+export function add_event_listener_on_submit_btn(submitBtn, projects, taskModalElement, taskModal) {
+    submitBtn.addEventListener("click", function () {
+        const taskId = this.dataset.taskId
+        const task = findTaskById(projects, taskId)
+
+        task.title = taskModalElement.querySelector("#task_title").value
+        task.description = taskModalElement.querySelector("#task_description").value
+        task.isImportant = taskModalElement.querySelector("#task_importance").checked ? true : false
+        task.dueDate = taskModalElement.querySelector("#task_due_date").value
+
+
+        taskModal.hide()
+        refreshDom(projects)
+    });
+}
+
+function findTaskById(projects, taskId) {
+    /**
+     * PERMETS DE SORITR DE LA BOUCLE UNE FOIS LA TACHE TROUVEE
+     */
+    for (const project of projects) {
+        const task = project.getTaskById(taskId);
+        if (task) return task;
+    }
+    return null;
+}
+
+export function formatDate(date) {
+    const y = date.getFullYear()
+    const m = (date.getMonth() + 1).toString().padStart(2, '0')
+    const day = date.getDate().toString().padStart(2, '0')
+    return `${y}-${m}-${day}`;
+}
+
+
+export function remove_all_active_menu() {
+    document.querySelectorAll(".side_menu").forEach(side_menu => side_menu.classList.remove("active"));
+}
+
+export function add_event_listener_on_to_do_category() {
+    document.querySelector(".to_do_categories").addEventListener("click", function (e) {
+        const target = e.target.closest(".task_category");
+        if (target) {
+            remove_all_active_menu();
+            target.classList.add("active");
+            const id = target.id;
+
+        }
+    });
+}
+
+export function add_event_listener_on_project_list() {
+    document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
+        const target = e.target.closest(".side_menu");
+        if (target) {
+            remove_all_active_menu();
+            target.classList.add("active");
+            const id = target.id;
+
+
+        }
+    });
+}
+
+
