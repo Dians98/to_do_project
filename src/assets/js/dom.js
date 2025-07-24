@@ -381,6 +381,8 @@ export function remove_all_active_menu() {
     document.querySelectorAll(".side_menu").forEach(side_menu => side_menu.classList.remove("active"));
 }
 
+
+
 export function add_event_listener_on_to_do_category() {
     document.querySelector(".to_do_categories").addEventListener("click", function (e) {
         const target = e.target.closest(".task_category");
@@ -404,6 +406,14 @@ export function add_event_listener_on_project_list() {
 
         }
     });
+}
+
+function renderDynamicView(id) {
+    switch (id) {
+        case "all":
+            renderAllTasks(projects);
+            break;
+    }
 }
 
 

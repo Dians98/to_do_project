@@ -44,26 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskModalBtn = addTaskModal.querySelector("#addtaskModalBtn");
     add_event_listener_on_add_task_modal_btn(addTaskModalBtn, projects, addTaskModalInstance, addTaskModal);
 
-
     /**event sur le bouton d'ajout de modification de tache */
     const submitBtn = taskModalElement.querySelector("#submitBtn");
 
     add_event_listener_on_submit_btn(submitBtn, projects, taskModalElement, taskModal, project_select);
-    
-
-
-
 
     add_event_listener_on_to_do_category()
 
     add_event_listener_on_project_list()
-
-
-
-    
-
-
-
 
 })
 
@@ -105,13 +93,7 @@ function initializeDefaultProject(lastTaskId) {
  */
 
 
-export function renderDynamicView(id) {
-    switch (id) {
-        case "all":
-            renderAllTasks(projects);
-            break;
-    }
-}
+
 
 
 
