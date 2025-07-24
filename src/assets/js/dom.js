@@ -2,6 +2,8 @@ import * as bootstrap from 'bootstrap';
 import Pikaday from 'pikaday';
 import 'pikaday/css/pikaday.css';
 import Project from './Project.js';
+import Task from './Task.js';
+import { getNextTaskId } from '../../index.js';
 
 const taskDueDate = document.querySelector("#task_due_date");
 
@@ -310,5 +312,33 @@ export function add_event_listener_on_add_project_modal_btn(AddProjectModalBtn, 
         refreshDom(projects)
     });
 
+}
+
+export function add_event_listener_on_add_task_modal_btn(addTaskModalBtn, projects, addTaskModalInstance, addTaskModal) {
+    addTaskModalBtn.addEventListener("click", function () {
+
+        const title = addTaskModal.querySelector("#add_task_title").value;
+        const description = addTaskModal.querySelector("#add_task_desc").value;
+        const dueDate = addTaskModal.querySelector("#add_task_due_date").value;
+        const isImportant = addTaskModal.querySelector("#add_task_importance").checked;
+
+        const projectSelect = addTaskModal.querySelector("#project_select");
+        const projectId = projectSelect.value;
+
+
+
+        let project = projects.find(project => project.id == projectId)
+
+
+        let taskId = getNextTaskId()
+
+        const task = new Task(taskId, title, description, dueDate, isImportant);
+        project.addTask(task);
+
+
+        addTaskModalInstance.hide()
+        refreshDom(projects)
+
+    })
 }
 

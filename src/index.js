@@ -15,13 +15,13 @@ import * as bootstrap from 'bootstrap';
 
 import Project from "./assets/js/Project.js";
 import Task from "./assets/js/Task.js";
-import { renderAllTasks, renderAllProjects , add_event_listener_on_add_project_modal_btn} from "./assets/js/dom.js"
+import { renderAllTasks, renderAllProjects, add_event_listener_on_add_project_modal_btn, add_event_listener_on_add_task_modal_btn } from "./assets/js/dom.js"
 import { refreshDom } from "./assets/js/dom.js"
 import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance, addTaskModal, addTaskModalInstance, initializeProjectSelect } from './assets/js/dom.js';
 
 let lastTaskId;
 
-function getNextTaskId() {
+export function getNextTaskId() {
     return lastTaskId += 1;
 }
 
@@ -42,32 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     add_event_listener_on_add_project_modal_btn(AddProjectModalBtn, projects, addProjectModalInstance, addProjectModal)
 
     const addTaskModalBtn = addTaskModal.querySelector("#addtaskModalBtn");
-    addTaskModalBtn.addEventListener("click", function () {
-
-        const title = addTaskModal.querySelector("#add_task_title").value;
-        const description = addTaskModal.querySelector("#add_task_desc").value;
-        const dueDate = addTaskModal.querySelector("#add_task_due_date").value;
-        const isImportant = addTaskModal.querySelector("#add_task_importance").checked;
-
-        const projectSelect = addTaskModal.querySelector("#project_select");
-        const projectId = projectSelect.value;
-
-
-
-        let project = projects.find(project => project.id == projectId)
-
-
-        let taskId = getNextTaskId()
-        alert(taskId)
-
-        const task = new Task(taskId, title, description, dueDate, isImportant);
-        project.addTask(task);
-
-
-        addTaskModalInstance.hide()
-        refreshDom(projects)
-
-    })
+    add_event_listener_on_add_task_modal_btn(addTaskModalBtn, projects, addTaskModalInstance, addTaskModal);
 
 
     /**event sur le bouton d'ajout de modification de tache */
@@ -98,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const id = target.id;
 
-            
+
         }
     });
 
 
 
-    
+
 
     document.querySelector(".to_do_projects_list_container").addEventListener("click", function (e) {
         const target = e.target.closest(".side_menu");
@@ -113,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             target.classList.add("active");
             const id = target.id;
 
-           
+
         }
     });
 
