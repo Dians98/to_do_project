@@ -145,22 +145,17 @@ export function renderAllTasks(projects) {
 function renderTodayTask(projects) {
     const tasks_list_container = document.querySelector(".tasks_list")
     const today = formatDate(new Date());
-    
-    const filteredProjects = projects.filter(project => {
-        return project.tasks.some(task => task.dueDate == today);
-    })
-    console.log("Projects avant", filteredProjects)
+
     tasks_list_container.innerHTML = ''
 
     document.querySelector("#dynamic_to_do_title").textContent = "Today";
 
     let taskNumber = 0
 
-
-    filteredProjects.forEach(project => {
+    projects.forEach(project => {
         const tasks = project.tasks
-
-        tasks.forEach((task, index) => {
+        const todayTasks = tasks.filter(task => task.dueDate === today);
+        todayTasks.forEach((task, index) => {
 
             const taskItem = document.createElement("div")
             taskItem.className = "task_item"
