@@ -58,7 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeDefaultProject(lastTaskId) {
     let today = new Date()
-    today = formatDate(today)
+    const formattedToday = formatDate(today);
+
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    const formattedYesterday = formatDate(yesterday);
+
+    let oneWeekLater = new Date();
+    oneWeekLater.setDate(today.getDate() + 7);
+    const formattedOneWeekLater = formatDate(oneWeekLater);
+    
+
 
     //Créer un tableau d'objets
     const projects = [];
@@ -69,11 +79,11 @@ function initializeDefaultProject(lastTaskId) {
 
 
     const tasks = [
-        new Task(1, 'Create Task component', 'Develop the task display UI', today),
-        new Task(2, 'Implement project management', 'Associate tasks with projects', today, true),
-        new Task(3, 'Add "mark as done" feature', 'Toggle done state', today),
-        new Task(4, 'Build sidebar', 'Menu for categories and projects', today, true),
-        new Task(5, 'Style integration', 'Responsive design and theming', today)
+        new Task(1, 'Create Task component', 'Develop the task display UI', formattedToday),
+        new Task(2, 'Implement project management', 'Associate tasks with projects', formattedYesterday, true),
+        new Task(3, 'Add "mark as done" feature', 'Toggle done state', formattedToday),
+        new Task(4, 'Build sidebar', 'Menu for categories and projects', formattedYesterday, true),
+        new Task(5, 'Style integration', 'Responsive design and theming', formattedOneWeekLater)
     ];
 
     const taskLength = tasks.length; // Initialiser lastTaskId avec le nombre de tâches
