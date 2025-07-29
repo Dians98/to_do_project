@@ -355,7 +355,7 @@ function renderCompletedTask(projects) {
 
     tasks_list_container.innerHTML = ''
 
-    document.querySelector("#dynamic_to_do_title").textContent = "Important";
+    document.querySelector("#dynamic_to_do_title").textContent = "Completed";
 
     let taskNumber = 0
 
@@ -473,7 +473,7 @@ function renderWeekTask(projects) {
 
     tasks_list_container.innerHTML = ''
 
-    document.querySelector("#dynamic_to_do_title").textContent = "Important";
+    document.querySelector("#dynamic_to_do_title").textContent = "Week";
 
     let taskNumber = 0
 
