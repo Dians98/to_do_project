@@ -960,6 +960,8 @@ function renderDynamicProjectView(id, projects) {
 
         })
     }
+    const taskNumberElement = document.querySelector("#task_number")
+    taskNumberElement.textContent = taskNumber
 }
 
 
