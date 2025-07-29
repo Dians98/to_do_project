@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://github.com/Dians98/to_do_project",
+  "homepage": "https://Dians98.github.io/to_do_project/",
   "scripts": {
     "build": "webpack",
     "dev": "webpack serve",

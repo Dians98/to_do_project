@@ -957,6 +957,7 @@ function renderDynamicProjectView(id, projects) {
 
             taskNumber++
 
+            console.log("taskNumber", taskNumber)
 
         })
     }
