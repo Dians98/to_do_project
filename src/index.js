@@ -21,10 +21,16 @@ import { taskModal, taskModalElement, addProjectModal, addProjectModalInstance, 
 
 let lastTaskId;
 
+/**
+ * Cette fonction retourne l'ID de la prochaine tâche.
+ */
 export function getNextTaskId() {
     return lastTaskId += 1;
 }
 
+/**
+ * Cette fonction initialise le projet par défaut avec des tâches prédéfinies.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const { projects, taskLength } = initializeDefaultProject();
     lastTaskId = taskLength; // Initialiser lastTaskId avec le nombre de tâches
@@ -55,7 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-
+/**
+ * 
+ * @param {*} lastTaskId 
+ * @returns 
+ * Cette fonction initialise le projet par défaut avec des tâches prédéfinies.
+ */
 function initializeDefaultProject(lastTaskId) {
     let today = new Date()
     const formattedToday = formatDate(today);

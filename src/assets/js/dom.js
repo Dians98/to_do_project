@@ -692,7 +692,9 @@ function deleteTaskAddEventListener(deleteTask, taskId, projects) {
         const taskId = this.dataset.taskId
 
         if (taskId) {
-
+            /**
+             * Cette fonction cherche le premier element qui correspond à l'ID de la tâche dans les projets
+             */
             const project = projects.find(project =>
                 project.tasks.some(task => task.id == taskId)
             );
@@ -710,6 +712,12 @@ function deleteTaskAddEventListener(deleteTask, taskId, projects) {
     });
 }
 
+/**
+ * 
+ * @param {*} project_select 
+ * @param {*} projects
+ * Cette fonction initialise le select des projets dans le modal d'ajout de tâche. 
+ */
 export function initializeProjectSelect(project_select, projects) {
     project_select.innerHTML = ""
     projects.forEach(project => {
